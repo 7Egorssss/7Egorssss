@@ -194,7 +194,6 @@
             color: var(--success);
         }
 
-        /* ESTILOS PUNTUACIÓN COMPACTA */
         .puntuacion-info {
             display: flex;
             justify-content: center;
@@ -219,7 +218,6 @@
             font-weight: bold;
         }
 
-        /* Estilos Jornadas */
         .jornadas-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -271,8 +269,8 @@
         }
 
         @media (max-width: 768px) {
-            .tabla-clasificacion thead th { font-size: 0.8rem; padding: 10px 5px; }
-            .tabla-clasificacion td { padding: 10px 5px; font-size: 0.9rem; }
+            .tabla-clasificacion thead th { font-size: 0.7rem; padding: 10px 5px; }
+            .tabla-clasificacion td { padding: 10px 5px; font-size: 0.85rem; }
             .team-name { min-width: 100px; }
             .puntuacion-info { flex-wrap: wrap; gap: 10px; font-size: 0.75rem; }
             .info-sep { display: none; }
@@ -304,6 +302,7 @@
                             <th>GANADOS</th>
                             <th>PERDIDOS</th>
                             <th>GOLES A FAVOR</th>
+                            <th>GOLES EN CONTRA</th>
                             <th>PUNTOS</th>
                         </tr>
                     </thead>
@@ -317,7 +316,7 @@
                     <span class="info-sep">/</span>
                     <span class="info-item"><b>Derrota:</b> 0 pts</span>
                     <span class="info-sep">|</span>
-                    <span class="info-item"><b>Desempate:</b> Goles a favor</span>
+                    <span class="info-item"><b>Desempate:</b> Diferencia de Goles (Favor - Contra)</span>
                 </div>
             </div>
         </div>
@@ -344,7 +343,7 @@
         function calcularClasificacion() {
             const equiposData = {};
             Object.keys(ligaData.equipos).forEach(nombre => {
-                equiposData[nombre] = { puntos: 0, jugados: 0, ganados: 0, perdidos: 0, golesFavor: 0 };
+                equiposData[nombre] = { puntos: 0, jugados: 0, ganados: 0, perdidos: 0, golesFavor: 0, golesContra: 0 };
             });
             
             ligaData.jornadas.forEach(jornada => {
@@ -355,7 +354,9 @@
                         equiposData[local].jugados++;
                         equiposData[visitante].jugados++;
                         equiposData[local].golesFavor += golesLocal;
+                        equiposData[local].golesContra += golesVisitante;
                         equiposData[visitante].golesFavor += golesVisitante;
+                        equiposData[visitante].golesContra += golesLocal;
                         
                         if (golesLocal > golesVisitante) {
                             equiposData[local].puntos += 3;
@@ -381,9 +382,12 @@
                 nombre, ...stats
             }));
             
+            // Lógica de desempate: Puntos > Diferencia de Goles (Favor - Contra)
             equiposArray.sort((a, b) => {
                 if (b.puntos !== a.puntos) return b.puntos - a.puntos;
-                return b.golesFavor - a.golesFavor; 
+                const diffA = a.golesFavor - a.golesContra;
+                const diffB = b.golesFavor - b.golesContra;
+                return diffB - diffA; 
             });
             
             tbody.innerHTML = equiposArray.map((equipo, index) => `
@@ -394,6 +398,7 @@
                     <td>${equipo.ganados}</td>
                     <td>${equipo.perdidos}</td>
                     <td>${equipo.golesFavor}</td>
+                    <td>${equipo.golesContra}</td>
                     <td class="points">${equipo.puntos}</td>
                 </tr>
             `).join('');
