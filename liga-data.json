@@ -6,16 +6,16 @@
       "partidos": [
         { "local": "Equipo 1", "visitante": "Equipo 9", "golesLocal": 2, "golesVisitante": 0 },
         { "local": "Equipo 2", "visitante": "Equipo 8", "golesLocal": 2, "golesVisitante": 1 },
-        { "local": "Equipo 3", "visitante": "Equipo 7", },
-        { "local": "Equipo 4", "visitante": "Equipo 6", }
+        { "local": "Equipo 3", "visitante": "Equipo 7",},
+        { "local": "Equipo 4", "visitante": "Equipo 6",}
       ]
     },
     {
       "nombre": "Jornada 2",
       "descansa": "Equipo 9",
       "partidos": [
-        { "local": "Equipo 1", "visitante": "Equipo 8", },
-        { "local": "Equipo 2", "visitante": "Equipo 7", },
+        { "local": "Equipo 1", "visitante": "Equipo 8",},
+        { "local": "Equipo 2", "visitante": "Equipo 7",},
         { "local": "Equipo 3", "visitante": "Equipo 6" },
         { "local": "Equipo 4", "visitante": "Equipo 5" }
       ]
