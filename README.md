@@ -1,4 +1,4 @@
-# ⚽ Liga Escolar 2025
+# ⚽ AgusChampion 2026
 
 Aplicación web moderna para gestionar tu liga escolar con clasificación en tiempo real y seguimiento de todas las jornadas.
 
@@ -202,4 +202,4 @@ Libre para usar en tu escuela o proyecto personal. ¡Diviértete! ⚽
 
 ---
 
-Hecho con ❤️ para la Liga Escolar 2025
+Hecho con ❤️ para AgusChampion 2026
