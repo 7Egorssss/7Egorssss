@@ -2,7 +2,7 @@
 
 # AgusChampion 2026
 
-Gestor de ligas escolares diseñado para la visualización de resultados y clasificación en tiempo real mediante el procesamiento de datos estáticos.
+Gestor de ligas diseñado para la visualización de resultados y clasificación en tiempo real mediante el procesamiento de datos estáticos.
 
 ---
 
